@@ -1,9 +1,13 @@
-
+import { useRouter } from "next/router";
 
 export default function Home() {
-  return (
-    <main>
-      <h1>Hello, World</h1>
-    </main>
-  )
+  const { push } = useRouter();
+  const isLoggedIn = false;
+
+  if (!isLoggedIn) {
+    push("/login");
+    return;
+  }
+
+  return <main>Home Page</main>;
 }
