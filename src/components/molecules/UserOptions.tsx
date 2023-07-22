@@ -46,7 +46,7 @@ export default function UserOptions() {
       <UserAvatar onClick={toggleDropDown} />
       {isDropDownOpen && (
         <div className="absolute right-0 mt-2 w-max bg-slate-50 rounded-md shadow-lg">
-          <span className="flex justify-center items-center w-full px-4 py-2 text-lg text-gray-700">
+          <span className="flex justify-center items-center w-full px-4 py-2 text-lg text-gray-700 bg-slate-200">
             {username}
           </span>
           <button
