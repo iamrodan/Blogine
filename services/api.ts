@@ -11,7 +11,7 @@ const API = axios.create({
 
 const requestHandler = (request: InternalAxiosRequestConfig<any>) => {
   try {
-    const jwtToken = localStorage.getItem("jwtToken");
+    const jwtToken = localStorage.getItem("token");
     if (request.headers) {
       request.headers["Authorization"] = "Bearer " + jwtToken;
     }
