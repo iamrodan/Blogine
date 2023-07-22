@@ -1,6 +1,6 @@
 import { AuthContext, AuthContextType } from "@/contexts/auth-context";
 import UserAvatar from "../atoms/UserAvatar";
-import { useContext, useState, useRef } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import { AiOutlineLogout } from "react-icons/ai";
 import { BiSolidBookContent } from "react-icons/bi";
 
@@ -20,6 +20,25 @@ export default function UserOptions() {
   const goToPostManager = () => {
     alert("manage post");
   };
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      // check if dispatched to close dropdown option
+      if (
+        !(dropdownRef?.current as unknown as HTMLDivElement)?.contains(
+          event.target as Node
+        )
+      ) {
+        setIsDropDownOpen(false);
+      }
+    };
+
+    window.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      window.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
 
   return (
     <div className="relative" ref={dropdownRef}>
