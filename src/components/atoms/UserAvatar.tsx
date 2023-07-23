@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 type UserAvatarProps = {
-  onClick(): void;
+  onClick?(): void;
 };
 export default function UserAvatar({ onClick }: UserAvatarProps) {
   //TODO: Show first letter of username in the avatar

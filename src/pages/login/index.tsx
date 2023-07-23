@@ -35,14 +35,14 @@ export default function LoginPage() {
   // useEffect(() => {
   //   if (isUserAuthenticated()) goToHome();
   // }, [isUserAuthenticated, goToHome]);
-  if (isUserAuthenticated()) goToHome();
+  if (isUserAuthenticated) goToHome();
 
   const loginUser = async (data: ValidationSchema) => {
     //TODO: Learn API Learn API Data validation
     const response = await API.post("/users/login", data);
     if (response.status === 200) {
-      // setAuthState()
-      setAuth({ token: response.data.jwt });
+      const { jwt: token, user } = response.data;
+      setAuth({ token, ...user });
       alert("User logged in successfully");
     }
     return response?.data;

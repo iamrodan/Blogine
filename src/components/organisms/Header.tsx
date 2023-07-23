@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AuthContext, AuthContextType } from "@/contexts/auth-context";
 import LinkButton from "../atoms/LinkButton";
 import UserOptions from "../molecules/UserOptions";
-import { Navbar } from "../molecules/Navbar";
+import { Navbar } from "./Navbar";
 
 export default function Header() {
   const { isUserAuthenticated } = useContext(AuthContext) as AuthContextType;
@@ -10,7 +10,7 @@ export default function Header() {
     <div className="w-full bg-white fixed border flex items-center">
       <Navbar />
       <div className="flex grow justify-end">
-        {isUserAuthenticated() ? (
+        {isUserAuthenticated ? (
           <UserOptions />
         ) : (
           <LinkButton label="Sign in" url="/login" />

@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import Image from "../atoms/Image";
-import UserOptions from "./UserOptions";
+import UserOptions from "../molecules/UserOptions";
 import { AuthContext, AuthContextType } from "@/contexts/auth-context";
 import LinkButton from "../atoms/LinkButton";
-import AppLogo from "./AppLogo";
+import AppLogo from "../molecules/AppLogo";
 import NavItem from "../atoms/NavItem";
 
 const menuItems = [

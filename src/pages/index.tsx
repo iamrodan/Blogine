@@ -1,6 +1,6 @@
 import LinkButton from "@/components/atoms/LinkButton";
 import SearchBar from "@/components/atoms/SearchBar";
-import { Navbar } from "@/components/molecules/Navbar";
+import { Navbar } from "@/components/organisms/Navbar";
 import Header from "@/components/organisms/Header";
 import { useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
@@ -131,7 +131,6 @@ export default function Home() {
 
   return (
     <div>
-      <Header />
       <main className="flex justify-between flex-col pt-20 px-20 pb-10 box-border">
         <section className="flex flex-col items-center justify-center">
           <SearchBar handleSearch={handleSearch} />

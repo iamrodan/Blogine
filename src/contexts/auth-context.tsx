@@ -1,5 +1,12 @@
 import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { createContext, useCallback, useEffect, useState } from "react";
+import useUtils from "@/hooks/useUtils";
+import {
+  createContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 type AuthProviderProps = {
   children: React.ReactNode;
@@ -9,23 +16,25 @@ export type AuthContextType = {
   auth: AuthInfo;
   setAuth(authInfo: AuthInfo): void;
   removeAuth(): void;
-  isUserAuthenticated(): boolean;
+  isUserAuthenticated: boolean;
 };
 
 type AuthInfo = {
   token: string;
+  username: string;
+  userId: string;
 };
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export default function AuthProvider({ children }: AuthProviderProps) {
-  const [authState, setAuthState] = useState<AuthInfo>({ token: "" });
+  const [authState, setAuthState] = useState<AuthInfo | null>(null);
   const { setItem, getItem, removeItem } = useLocalStorage();
 
   const setUserAuthInfo = useCallback(
-    ({ token }: AuthInfo) => {
-      setItem("token", token);
-      setAuthState({ token });
+    (authInfo: AuthInfo) => {
+      setItem("auth", JSON.stringify(authInfo));
+      setAuthState(authInfo);
     },
     [setItem]
   );
@@ -34,22 +43,28 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     return Boolean(authState?.token);
   }, [authState]);
 
+  const { goToHome } = useUtils();
+
   const removeUserAuthInfo = () => {
-    removeItem("token");
-    setAuthState({ token: "" });
+    removeItem("auth");
+    setAuthState(null);
+    goToHome();
   };
 
   useEffect(() => {
-    const token = getItem("token");
-    if (token) setUserAuthInfo({ token });
+    const auth = getItem("auth");
+    if (auth) setUserAuthInfo(JSON.parse(auth));
   }, [getItem, setUserAuthInfo]);
 
   return (
     <AuthContext.Provider
       value={{
-        auth: authState,
+        auth: authState as AuthInfo,
         setAuth: setUserAuthInfo,
-        isUserAuthenticated,
+        isUserAuthenticated: useMemo(
+          () => isUserAuthenticated(),
+          [isUserAuthenticated]
+        ),
         removeAuth: removeUserAuthInfo,
       }}
     >
