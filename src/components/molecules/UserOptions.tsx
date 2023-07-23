@@ -42,7 +42,7 @@ export default function UserOptions() {
   }, []);
 
   return (
-    <div className="relative" ref={dropdownRef}>
+    <div className="relative mx-4" ref={dropdownRef}>
       <UserAvatar onClick={toggleDropDown} />
       {isDropDownOpen && (
         <div className="absolute right-0 mt-2 w-max bg-slate-50 rounded-md shadow-lg">
