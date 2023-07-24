@@ -1,3 +1,14 @@
+TODO:
+
+- [ ] Make Responsive
+- [ ] Fetch real posts on home page and fix search to real data
+- [ ] Add a signup modal in the sign in page
+- [ ] Add option to add new posts on the manage page
+- [ ] If time, add option to edit posts in manage page
+- [ ] Add zod validation on all the forms (if possible in api too)
+- [ ] Refactor code to use custom hooks for the crud services for blogs, users
+- [ ] Refactor code to extract reusable components using atomic design principle
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
