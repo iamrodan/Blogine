@@ -58,7 +58,7 @@ export default function Home({ blogs: blogsData }: HomeProps) {
                   <div className="flex w-full justify-end items-center">
                     <LinkButton
                       label="Read full article"
-                      url=""
+                      url={`/blogs/${blog._id}`}
                       className="border-slate-500 text-slate-500 hover:text-slate-700 hover:border-slate-700"
                     >
                       <AiOutlineArrowRight />
