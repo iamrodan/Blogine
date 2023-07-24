@@ -16,21 +16,23 @@ type HomeProps = {
   blogs: Array<Post>;
 };
 
-export default function Home({ blogs }: HomeProps) {
-  // const [posts, setPosts] = useState<Post[]>(POSTS);
+export default function Home({ blogs: blogsData }: HomeProps) {
+  // Todo: make the blog search actually from backend at blogs/search?keyword="keyword"
+  const [blogs, setBlogs] = useState<Post[]>(blogsData);
   const [isSearchResults, setIsSearchResults] = useState<boolean>(false);
 
   const handleSearch = (searchKey: string) => {
     if (!searchKey) {
       setIsSearchResults(false);
+      setBlogs(blogsData);
       return;
     }
     setIsSearchResults(true);
-    // setPosts(
-    //   POSTS.filter((post) =>
-    //     post.title.toLowerCase().includes(searchKey.toLowerCase())
-    //   )
-    // );
+    setBlogs(
+      blogs.filter((post) =>
+        post.title.toLowerCase().includes(searchKey.toLowerCase())
+      )
+    );
   };
 
   return (
