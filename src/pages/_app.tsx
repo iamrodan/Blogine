@@ -23,7 +23,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
         {shouldDisplayHeader() && <Header />}
         <div
           className={classNames({
-            "pt-20 px-20": shouldDisplayHeader(),
+            "pt-20 px-0 lg:px-20": shouldDisplayHeader(),
           })}
         >
           <Component {...pageProps} />

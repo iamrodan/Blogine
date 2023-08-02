@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useCallback, useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "react-query";
@@ -32,9 +33,6 @@ export default function LoginPage() {
     AuthContext
   ) as AuthContextType;
 
-  // useEffect(() => {
-  //   if (isUserAuthenticated()) goToHome();
-  // }, [isUserAuthenticated, goToHome]);
   if (isUserAuthenticated) goToHome();
 
   const loginUser = async (data: ValidationSchema) => {
@@ -43,7 +41,6 @@ export default function LoginPage() {
     if (response.status === 200) {
       const { jwt: token, user } = response.data;
       setAuth({ token, ...user });
-      alert("User logged in successfully");
     }
     return response?.data;
   };
@@ -62,7 +59,7 @@ export default function LoginPage() {
       </Head>
       <section>
         <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
-          <div className="relative flex items-end px-4 pb-10 pt-60 sm:px-6 sm:pb-16 md:justify-center lg:px-8 lg:pb-24 h-full">
+          <div className="relative hidden md:flex items-end px-4 pb-10 pt-60 lg:px-8 lg:pb-24 md:justify-center h-full">
             <div className="absolute inset-0">
               <img
                 className="h-full w-full rounded-md object-cover object-top"
@@ -93,31 +90,6 @@ export default function LoginPage() {
                 onSubmit={onSubmit}
               >
                 <div className="space-y-5">
-                  {/* <div>
-                  <label
-                    htmlFor=""
-                    className="text-base font-medium text-gray-900"
-                  >
-                    {" "}
-                    Username{" "}
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                      type="text"
-                      placeholder="Username"
-                      {...register("username", {
-                        // required: true,
-                        // minLength: 4,
-                      })}
-                    />
-                    {errors.username && (
-                      <p className="text-xs italic text-red-500 mt-2">
-                        {errors.username?.message}
-                      </p>
-                    )}
-                  </div>
-                </div> */}
                   <InputButton
                     type="text"
                     label="Username"
@@ -134,33 +106,6 @@ export default function LoginPage() {
                     placeholder="Password"
                     errorMsg={errors.password?.message}
                   />
-                  {/* <div>
-                  <div className="flex items-center justify-between">
-                    <label
-                      htmlFor=""
-                      className="text-base font-medium text-gray-900"
-                    >
-                      {" "}
-                      Password{" "}
-                    </label>
-                  </div>
-                  <div className="mt-2">
-                    <input
-                      className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                      type="password"
-                      placeholder="Password"
-                      {...register("password", {
-                        // required: true,
-                        // minLength: 8,
-                      })}
-                    />
-                    {errors.password && (
-                      <p className="text-xs italic text-red-500 mt-2">
-                        {errors.password?.message}
-                      </p>
-                    )}
-                  </div>
-                </div> */}
                   <SubmitButton label="Log in" />
                 </div>
               </form>

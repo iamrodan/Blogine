@@ -25,12 +25,12 @@ export default function SearchBar({ handleSearch }: SearchBarProps) {
   };
 
   return (
-    <div className="flex flex-row h-12 w-1/2 mb-10 justify-center">
+    <div className="flex flex-row h-12 w-auto lg:w-1/2 mb-10 justify-center">
       <div className="flex items-center h-full w-full bg-gray-100 px-4 py-2 border border-slate-700">
         <AiOutlineSearch className="w-6 h-6 text-gray-600" />
         <input
           type="text"
-          className="bg-transparent ml-2 focus:outline-none w-full"
+          className="bg-transparent lg:ml-2 focus:outline-none w-full"
           placeholder="Search..."
           onChange={handleOnChange}
           value={searchKey}
@@ -38,7 +38,7 @@ export default function SearchBar({ handleSearch }: SearchBarProps) {
         />
       </div>
       <button
-        className="bg-slate-900 text-slate-50 px-4 uppercase"
+        className="bg-slate-900 text-slate-50 px-2 lg:px-4 uppercase w-min"
         onClick={onSearchBarClick}
       >
         Search

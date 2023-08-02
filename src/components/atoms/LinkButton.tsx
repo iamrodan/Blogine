@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 type ButtonProps = {
-  label: string;
+  label?: string;
   url: string;
   className?: string;
   children?: React.ReactNode;
